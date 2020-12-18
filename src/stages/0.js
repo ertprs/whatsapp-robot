@@ -1,16 +1,21 @@
 const servicos = require("../servicos")
+const banco = require('../banco')
 
-function execute() {
+function execute(user, msg) {
 
-    let sistemas = "Favor digite o número do sistema para interação:\n"
+    let carta = "Favor digite o primeiro número do sistema que deseja informações:\n"
 
-    Object.keys(servicos.sistemas).forEach((value) => {
-        let element = servicos.sistemas[value]
-        sistemas +=  `${value} - ${element.descricao}\n`
+    Object.keys(servicos.carta).forEach((value) => {
+        let element = servicos.carta[value]
+        carta +=  `${value} - ${element.descricao}\n`
     })
+
+    banco.db[user].stage = 1
+    
     return [
-        "Olá! Sou o chatbot da iBridge e estou em desenvolvimento.. Você está no estágio 0..",
-        sistemas
+        "Olá! Sou o assistente virtual da iBridge e estou em desenvolvimento.. ",
+        "Aqui você irá selecionar um ou mais dos nossos sistemas, eu te apresentarei um resumo e encaminharei o resto das informações para o seu email..",
+        carta
     ]
 }
 

@@ -27,7 +27,7 @@ venom
 
 function start(client) {
   client.onMessage((message) => {
-    let resp = stages.step[getStage(message.from)].obj.execute();
+    let resp = stages.step[getStage(message.from)].obj.execute(message.from, message.body);
     for (let index = 0; index < resp.length; index++) {
       const element =resp[index];
       client.sendText(message.from, element)
@@ -36,6 +36,16 @@ function start(client) {
 }
 
 function getStage(user){
+  //CASO EXISTA ESSE NUMERO NO BANCO
+  if( banco.db[user]) {
+    return banco.db[user].stage
+  } else {
+  //CASO SEJA A PRIMEIRA VEZ DO NÚMERO
+    banco.db[user] = {
+      stage: 0,
+      itens: [],
+    }
+  }
     return banco.db[user].stage;
 }
 

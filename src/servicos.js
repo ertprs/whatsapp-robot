@@ -1,18 +1,21 @@
 const servicos = {
     1: {
         descricao: "Intranet",
-        dev: "Gustavo"
+        dev: "Gustavo",
+        horas: 50
     },
 
     2: {
         descricao: "PABX",
-        dev: "Espaker"
+        dev: "Espaker",
+        horas: 60
     },
 
     3: {
         descricao: "CRM",
-        dev: "Gabi"
+        dev: "Gabi",
+        horas: 80
     }
 }
 
-exports.sistemas = servicos;
+exports.carta = servicos;
