@@ -4,6 +4,8 @@
 const venom = require('venom-bot');
 const banco = require("./banco")
 const stages = require("./stages")
+const data = require("./data.json")
+
 
 // (async () => {
 //     const db = require("./db")
@@ -11,12 +13,6 @@ const stages = require("./stages")
 //     const clientes = await db.selectLogs();
 //     console.log(clientes)
 // }) ();
-
-// let resp = stages.step[getStage("554896213107@c.us")].obj.execute();
-// for (let index = 0; index < Array(resp).length; index++) {
-//   const element = Array(resp)[index];
-//   console.log(element)
-// } 
 
 venom
   .create()
@@ -28,25 +24,29 @@ venom
 function start(client) {
   client.onMessage((message) => {
     let resp = stages.step[getStage(message.from)].obj.execute(message.from, message.body);
+    const telefone = message.from
     for (let index = 0; index < resp.length; index++) {
       const element =resp[index];
       client.sendText(message.from, element)
-    }   
+    }          
   });
 }
 
+
 function getStage(user){
   //CASO EXISTA ESSE NUMERO NO BANCO
-  if( banco.db[user]) {
+  if(banco.db[user]) {
     return banco.db[user].stage
   } else {
-  //CASO SEJA A PRIMEIRA VEZ DO NÚMERO
+  // //CASO SEJA A PRIMEIRA VEZ DO NÚMERO
     banco.db[user] = {
       stage: 0,
-      itens: [],
+      itens: [
+        
+      ],
     }
   }
-    return banco.db[user].stage;
+    return banco.db[user].stage;   
 }
 
 

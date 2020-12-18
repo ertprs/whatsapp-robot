@@ -1,19 +1,17 @@
-const servicos = require("../servicos")
-const banco = require("../banco")
+const banco = require("../../banco")
+const stages = (require("../../stages"))
 
 function execute(user, msg) {
 
     if (msg === "*") {
         banco.db[user].stage = 0;
-        return ["É uma pena..Até mais!"]
+        return ["É uma pena.. Até mais!"]
     }
 
     if (msg === "#") {
-        banco.db[user].stage = 2;
+        banco.db[user].stage = 3;
         return ["Estou reunindo as informações.. ok?"]
     }
-
-
 
     if(!servicos.carta[msg]) {
         return ["Número inválido. Informe um dos números apresentados.", 

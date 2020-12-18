@@ -1,5 +1,5 @@
-const servicos = require("../servicos")
-const banco = require("../banco")
+const banco = require("../../banco")
+const stages = (require("../../stages"))
 
 function execute(user, msg) {
 
@@ -9,7 +9,7 @@ function execute(user, msg) {
     }
 
     if (msg === "#") {
-        banco.db[user].stage = 3
+        banco.db[user].stage = "t-3"
         return ["Digite seu email, por favor"]
     }
 

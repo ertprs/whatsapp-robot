@@ -1,23 +1,54 @@
 var stages = {
+
     0:{
-        descricao:"Boas Vindas",
+        descricao:"Opcoes",
         obj: require("./stages/0")
     },
+
+    //TESTES
     1:{
-        descricao:"Opcoes",
-        obj: require("./stages/1")
+        descricao:"1",
+        obj: require("./stages/teste/1.js")
     },
     2:{
-        descricao:"Informacao",
-        obj: require("./stages/2")
+        descricao:"2",
+        obj: require("./stages/teste/2.js")
     },
     3:{
-        descricao:"Contato",
-        obj: require("./stages/3")
+        descricao:"3",
+        obj: require("./stages/teste/3.js")
     },
     4:{
+        descricao:"4",
+        obj: require("./stages/teste/4.js")
+    },
+    5:{
+        descricao:"5",
+        obj: require("./stages/teste/5.js")
+    },
+
+
+    //CONTATOS
+    "c":{
+        descricao:"Menu Contatos",
+        obj: require("./stages/contato/1.js")
+    },
+    "c-cadastro-1":{
+        descricao:"Opcoes",
+        obj: require("./stages/contato/2.js")
+    },
+
+    "c2-consulta":{
+        descricao:"Informacao",
+        obj: require("./stages/contato/3.js")
+    },
+    "c4":{
+        descricao:"Contato",
+        obj: require("./stages/contato/4.js")
+    },
+    "c5":{
         descricao:"Encerramento",
-        obj: require("./stages/4")
+        obj: require("./stages/contato/5.js")
     }
 }
 

@@ -1,21 +1,32 @@
 const servicos = require("../servicos")
 const banco = require('../banco')
 
+
 function execute(user, msg) {
 
-    let carta = "Favor digite o primeiro número do sistema que deseja informações:\n"
+    // console.log(user)
 
-    Object.keys(servicos.carta).forEach((value) => {
-        let element = servicos.carta[value]
-        carta +=  `${value} - ${element.descricao}\n`
-    })
+    if (msg === "1") {
+        banco.db[user].stage = "c"
+        return [
+            "MENU CONTATOS\n----------------------\nPara CADASTRO, digite 1;\nPara CONSULTA, digite 2."
+        ]
+    }
 
-    banco.db[user].stage = 1
+    if (msg === "2") {
+        banco.db[user].stage = 1
+        return ["Vamos lá.. ok?"]
+    }
+
+    if (msg === "*") {
+        banco.db[user].stage = 0
+        return ["Tudo bem.. Até mais! "]
+    }
     
     return [
         "Olá! Sou o assistente virtual da iBridge e estou em desenvolvimento.. ",
-        "Aqui você irá selecionar um ou mais dos nossos sistemas, eu te apresentarei um resumo e encaminharei o resto das informações para o seu email..",
-        carta
+        "Caso queira conversar sobre contatos, digite 1..\nCaso queira informações sobre nossos sistemas, digite 2..",
+        "Ou caso queira encerrar, digite *"
     ]
 }
 
